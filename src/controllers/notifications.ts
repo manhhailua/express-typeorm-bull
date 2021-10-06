@@ -7,8 +7,8 @@ const notificationsController = Router()
 
 notificationsController.get("/", async function (req: Request, res: Response) {
     const notificationRepository = getManager().getRepository(Notification);
-    const users = await notificationRepository.find();
-    res.json(users);
+    const notifications = await notificationRepository.find();
+    res.json(notifications);
 });
 
 notificationsController.get("/:id", async function (req: Request, res: Response) {
@@ -19,16 +19,16 @@ notificationsController.get("/:id", async function (req: Request, res: Response)
 
 notificationsController.post("/", async function (req: Request, res: Response) {
     const notificationRepository = getManager().getRepository(Notification);
-    const user = await notificationRepository.create(req.body);
-    const results = await notificationRepository.save(user);
+    const notification = await notificationRepository.create(req.body);
+    const results = await notificationRepository.save(notification);
     return res.send(results);
 });
 
 notificationsController.put("/:id", async function (req: Request, res: Response) {
     const notificationRepository = getManager().getRepository(Notification);
-    const user = await notificationRepository.findOne(req.params.id);
-    notificationRepository.merge(user, req.body);
-    const results = await notificationRepository.save(user);
+    const notification = await notificationRepository.findOne(req.params.id);
+    notificationRepository.merge(notification, req.body);
+    const results = await notificationRepository.save(notification);
     return res.send(results);
 });
 

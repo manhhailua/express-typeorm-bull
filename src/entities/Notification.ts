@@ -9,7 +9,9 @@ export class Notification {
     @Column()
     title: string;
 
-    @Column()
+    @Column({
+        default: false,
+    })
     read: boolean;
 
 }
